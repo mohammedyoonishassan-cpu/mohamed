@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Electronic Shop Project</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    color: #22c55e;
+}
+
+.container {
+    background: #111827;
+    padding: 20px;
+    width: 400px;
+    margin: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 10px #22c55e;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    background: #22c55e;
+    color: black;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #16a34a;
+}
+
+#result {
+    font-size: 18px;
+    margin-top: 10px;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Electronic Shop</h1>
+
+<div class="container">
+    <h2>Select Product</h2>
+
+    <select id="product">
+        <option value="">-- Select Product --</option>
+
+        <optgroup label="📱 Mobile Phones">
+            <option value="iPhone 15 Pro">iPhone 15 Pro</option>
+            <option value="Samsung Galaxy S24">Samsung Galaxy S24</option>
+            <option value="Xiaomi Redmi Note 13">Xiaomi Redmi Note 13</option>
+        </optgroup>
+
+        <optgroup label="💻 Laptops">
+            <option value="Dell XPS 13">Dell XPS 13</option>
+            <option value="MacBook Air M2">MacBook Air M2</option>
+            <option value="HP Pavilion 15">HP Pavilion 15</option>
+        </optgroup>
+
+        <optgroup label="🎮 Gaming">
+            <option value="PlayStation 5">PlayStation 5</option>
+            <option value="Xbox Series X">Xbox Series X</option>
+        </optgroup>
+
+        <optgroup label="🔌 Accessories">
+            <option value="Wireless Mouse">Wireless Mouse</option>
+            <option value="Bluetooth Speaker">Bluetooth Speaker</option>
+        </optgroup>
+    </select>
+
+    <input type="number" id="qty" placeholder="Enter Quantity">
+
+    <button onclick="calculateTotal()">Buy Now</button>
+
+    <h3 id="result"></h3>
+</div>
+
+<script>
+// Product prices using Object
+let prices = {
+    "iPhone 15 Pro": 1200,
+    "Samsung Galaxy S24": 1000,
+    "Xiaomi Redmi Note 13": 300,
+    "Dell XPS 13": 1500,
+    "MacBook Air M2": 1400,
+    "HP Pavilion 15": 900,
+    "PlayStation 5": 500,
+    "Xbox Series X": 480,
+    "Wireless Mouse": 20,
+    "Bluetooth Speaker": 50
+};
+
+// Function + DOM + Validation
+function calculateTotal() {
+    let product = document.getElementById("product").value;
+    let qty = document.getElementById("qty").value;
+    let result = document.getElementById("result");
+
+    // Validation
+    if (product === "" || qty === "" || qty <= 0) {
+        result.innerHTML = "❌ Please select product and enter valid quantity!";
+        result.style.color = "red";
+        return;
+    }
+
+    // Calculate total
+    let total = prices[product] * qty;
+
+    // Conditional logic
+    if (total > 1000) {
+        result.innerHTML = "✅ Total Price: $" + total + " (Big Purchase)";
+    } else {
+        result.innerHTML = "✅ Total Price: $" + total;
+    }
+
+    result.style.color = "lightgreen";
+}
+</script>
+
+</body>
+</html>
